@@ -1,0 +1,7 @@
+bash --version
+echo $SHELL --> To see the main shell in my computer
+history | less --> To see the content in an interactive way
+history | wc --> To see the amount of lines, words and characterers in a file
+
+Piping is usually used with the following tools:
+    grep, awk, sed, cut
