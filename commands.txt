@@ -146,3 +146,13 @@ echo $?
 [ ! 1 -lt 5 ]; echo $?
 
 ----
+[[  ]] --> This is called extended tests and give us extended tools not provided by regular test, say, []
+[[ -d ~ && -a /bin/bash ]]; echo $?
+[[ -d ~ || -a /bin/bashh ]]; echo $?
+[[ -d ~ ]] && echo This runs if the statement inside of double brackets is true
+ls && echo This runs if the statement inside of double brackets is true
+true && echo This runs if the statement inside of double brackets is true
+false && echo This runs if the statement inside of double brackets is true
+[[ "cat" =~ c.* ]]; echo $?
+
+----
