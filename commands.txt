@@ -181,6 +181,8 @@ declare -A office
 office[city]="San Francisco"
 office["building name"]="HQ West"
 echo ${office["building name"]} is in ${office[city]}"
+echo ${!office[@]} --> To acquire all keys
+echo ${office[@]} --> To acquire all values
 
 ----
 The execution of the commands returns a 0 or 1 as saw in the "comparison section". So, those can be used as conditions in if-statements. 
