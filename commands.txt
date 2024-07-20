@@ -160,3 +160,9 @@ echo -e "\a"
 echo -e "Name\t\tNumber"; echo -e "Scott\t\t123"
 echo -e "This text\nbreaks over\nthree lines"
 echo -e "Ding\a"
+
+----
+echo "The results are: $(( 2 + 2 )) and $(( 3 / 1 ))"
+printf "The results are: %d and %d\n" $(( 2 + 2 )) $(( 3 / 1 ))
+
+----
