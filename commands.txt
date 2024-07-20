@@ -115,3 +115,23 @@ declare -p
 echo $USER
 
 ----
+echo $(( (3+6)*12 - (2**7)  ))
+a=3
+((a+=3))
+((a++))
+((a--))
+b=$a+1 --> Bash treats this as a string
+declare -i b=3 --> To declare a variable to be used as an integer
+b=$b+1 --> This isn't gonna give as an error
+echo $((a++))
+declare -i c
+declare -i e=1
+declare -i f=3
+n=$(echo "scale=3; $e/$f" | bc)
+echo $n
+echo $RANDOM
+echo $(( 1 + RANDOM % 10 ))
+echo $(( 1 + RANDOM % 20 ))
+echo $(( 1 + RANDOM % 100 ))
+
+----
