@@ -156,3 +156,7 @@ false && echo This runs if the statement inside of double brackets is true
 [[ "cat" =~ c.* ]]; echo $?
 
 ----
+echo -e "\a"
+echo -e "Name\t\tNumber"; echo -e "Scott\t\t123"
+echo -e "This text\nbreaks over\nthree lines"
+echo -e "Ding\a"

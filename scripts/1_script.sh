@@ -5,6 +5,8 @@
 
 # I could implement set or shopt if I were to make some optimizations inside my shell script because the shell script doesn't run in a interactive shell, the same we use to execute commands imperatively
 
+#If I add command right here that's gonna return an error, this dosn't stop the execution
+
 echo "Hello There!"
 
 # To make a shell script executable I have to execute --> chmod +x 1_script.sh
