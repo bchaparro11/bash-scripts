@@ -41,8 +41,8 @@ help --> To see the builtins that bash provides
 ~
 {...}
 ${...}
-$(...)
-$((...))
+$(...) --> Also `...`
+$((...)) --> Also $[...]
 
 ----
 echo ~
@@ -75,5 +75,14 @@ echo ${a/World/Everybody}
 echo ${a//World/Everybody}
 echo ${a//o/_}
 echo $a:1:12  --> Everything right here is interpreted as a parameter not as a command
+
+----
+uname -r
+echo "The kernel is $(uname -r)."
+echo "The python version is $(python3 -V)"
+echo "Result: $(python3 -c 'print("Hello from Python!")')"
+echo "Result: $(python3 -c 'print("Hello from Python!")' | tr [a-z] [A-Z])"
+echo "Result: `python3 -c 'print("Hello from Python!")'`"
+Command substitution is often used with grep awk, and cut
 
 ----
