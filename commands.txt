@@ -91,3 +91,12 @@ echo $((3-2))
 echo $((3*4))
 echo $((4/5))
 Bash can only calculate operations using integers
+
+----
+embeddedWord="nice"
+echo Hi $embeddedWord world!
+echo Hi \(big\) world. The kernel is $(uname -r)
+echo 'Hi \(big\) world. The kernel is $(uname -r)' --> These are the strong quotes
+echo "Hi \(big\) world. The kernel is $(uname -r)" --> More flexible
+echo;echo "Ni hao!";echo
+echo -n "Ni hao" --> Turns out the new line
