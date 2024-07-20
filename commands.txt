@@ -19,3 +19,21 @@ Piping is usually used with the following tools:
 << EndOfText
     "Commands"
 EndOfText
+
+----
+Built-in functions
+
+echo
+printf
+command echo
+builtin echo
+command -V echo
+command -V df
+The default is always the built-in programs
+enable -n echo
+enable -n
+enable echo
+help echo --> Help is only used with builtins
+help --> To see the builtins that bash provides
+
+----
