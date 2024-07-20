@@ -95,6 +95,7 @@ Bash can only calculate operations using integers
 ----
 embeddedWord="nice"
 echo Hi $embeddedWord world!
+echo "Hi $embeddedWord world!"
 echo Hi \(big\) world. The kernel is $(uname -r)
 echo 'Hi \(big\) world. The kernel is $(uname -r)' --> These are the strong quotes
 echo "Hi \(big\) world. The kernel is $(uname -r)" --> More flexible
@@ -178,3 +179,7 @@ declare -A office
 office[city]="San Francisco"
 office["building name"]="HQ West"
 echo ${office["building name"]} is in ${office[city]}"
+
+----
+The execution of the commands returns a 0 or 1 as saw in the "comparison section". So, those can be used as conditions in if-statements. 
+
