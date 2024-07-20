@@ -6,6 +6,8 @@ history | wc --> To see the amount of lines, words and characterers in a file
 Piping is usually used with the following tools:
     grep, awk, sed, cut
 
+Other editors that I could use --> EMACS or ED
+
 ----
 |
 >
@@ -124,7 +126,7 @@ a=3
 b=$a+1 --> Bash treats this as a string
 declare -i b=3 --> To declare a variable to be used as an integer
 b=$b+1 --> This isn't gonna give as an error
-echo $((a++))
+echo $((a++)) --> I coudl use it here
 declare -i c
 declare -i e=1
 declare -i f=3
