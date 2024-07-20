@@ -135,3 +135,14 @@ echo $(( 1 + RANDOM % 20 ))
 echo $(( 1 + RANDOM % 100 ))
 
 ----
+help test
+[ -d ~ ] --> It's important to add spaces to the insides of the brackets
+echo $?
+[ -d /bin/bash ]; echo $?
+[ -d /bin ]; echo $?
+[ "cat" = "dog" ]; echo $? --> The following symbols are used only by strings  >, >=, <, <= 
+[ 1 = 1 ]; echo $?
+[ 1 -lt 5 ]; echo $?
+[ ! 1 -lt 5 ]; echo $?
+
+----
