@@ -100,3 +100,18 @@ echo 'Hi \(big\) world. The kernel is $(uname -r)' --> These are the strong quot
 echo "Hi \(big\) world. The kernel is $(uname -r)" --> More flexible
 echo;echo "Ni hao!";echo
 echo -n "Ni hao" --> Turns out the new line
+
+----
+_var=hi
+_var="hi hi"
+_var=7
+echo $_var
+declare -r _immutable_var=14
+declare -l _lowercase_var="HELLO HELLO"
+_lowercase_var="NI HAO NI HAO"
+declare -u _uppercase_var="hi hi"
+_uppercase_var="guten morgen"
+declare -p
+echo $USER
+
+----
