@@ -33,6 +33,17 @@ greet5(){
     done
 }
 
+#Names with spaces and using $FUNCNAME!
+greet6(){
+    declare -i key=1
+    for val in "$@"
+    do
+        echo $key:$val
+        (( key++ ))
+    done
+    echo "This output were possible because of the function called $FUNCNAME!"
+}
+
 greet1
 
 echo
@@ -58,6 +69,10 @@ greet5 /home/brian/l_bash_scripts/scripts/*
 echo
 
 greet5 $(ls /home/brian/l_bash_scripts/scripts/)
+
+echo
+
+greet6 Klaus Jürgen Hans "Uwe Becker"
 
 echo
 
