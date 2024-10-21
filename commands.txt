@@ -2,11 +2,49 @@ bash --version
 echo $SHELL --> To see the main shell in my computer
 history | less --> To see the content in an interactive way
 history | wc --> To see the amount of lines, words and characterers in a file
+cat commands.txt | wc -l
+cat commands.txt | wc -w
+cat commands.txt | wc -c
 
 Piping is usually used with the following tools:
     grep, awk, sed, cut
 
 Other editors that I could use --> EMACS or ED
+
+----
+
+What do 0,1, and 2 mean Bourne Shell?
+
+0 --> Standard input (stdin)
+1 --> Standard output (stdout)
+2 --> Standart error (stderr)
+
+----
+
+ls > output.txt --> Truncate
+ls >> output.txt --> Append
+
+ls /notreal 1> output.txt 2> error.txt
+ls /notreal 1>> output.txt 2>> error.txt
+
+I can use too "ls /notreal 0> output.txt" but, it's a bit counterproductive, things doesn't work well here
+
+When using ">" or ">>" the default number used on background is 1
+
+cat < commands.txt
+ls | cat
+
+cat << EndOfText
+This is
+a multiline
+bash command giver
+EndOfText
+
+----
+
+Piping is used to send streams from one program to another
+
+Redirection is used to send strems from one file to another
 
 ----
 |
