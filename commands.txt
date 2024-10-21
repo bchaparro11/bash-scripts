@@ -64,30 +64,40 @@ EndOfText
 ----
 Built-in functions
 
-echo
-printf
-command echo
-builtin echo
-command -V echo
-command -V df
+echo  --> Output something on the shell adding a jumpspace
+printf  --> Output something on he shell without add a jumpspace
+command echo  --> To execute external program version of a command (echo could be a built-in or an external program)
+builtin echo  --> To execute the built-in program version of a command
+command -V echo  --> To realize if the command is an external program or a built-in program (This is a built-in)
+command -V df  --> To realize if the command is an external program or a built-in program (This is an external program)
+
 The default is always the built-in programs
-enable -n echo
-enable -n
-enable echo
-help echo --> Help is only used with builtins
+
+enable -n echo --> To disable the built-in form of a program as default. In this case, the external program will default to echo
+enable -n  --> To see the whole list of disabled built-in commands
+enable echo  --> To enable the built-in command echo as the default
+help echo --> To see the manpages of a built-in command. Built-in commands have different manpages
 help --> To see the builtins that bash provides
 
 ----
-~
-{...}
-${...}
-$(...) --> Also `...`
-$((...)) --> Also $[...]
+
+Bash Expansions and Substitutions:
+
+~  --> Tilde expansion
+{...}  --> Brace expansion
+${...}  --> Parameter expansion
+$(...)  --> Also `...`  --> Command expansion
+$((...)) --> Also $[...]  --> Arithmetic expansion
 
 ----
-echo ~
-whoami
-echo ~- --> The same output could be reached by echo $OLDPWD
+
+Tilde Expansion
+
+echo ~  --> Too see what's user's home. It is not the "global" home
+echo $HOME  --> To do exactlly the same as previous command
+whoami  --> To see what's the user I'm using
+echo ~- --> To see the previous directory I was in
+echo $OLDPWD --> To do exactly the same as previous command
 
 ----
 echo /tmp/{one,two,three}/file.txt
