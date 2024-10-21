@@ -139,15 +139,28 @@ echo {cat,dog,fox}_{1..5}
 head -n1 {dir1,dir2,dir3}/lorem.txt
 
 ----
+
+Parameter Expansion  --> To retreive the value of variables
+
 a="Hello World World"
-echo $a  --> This is different to "echo a"
-echo ${a}
-echo ${a:4}
-echo ${a:1:12}
-echo ${a/World/Everybody}
-echo ${a//World/Everybody}
-echo ${a//o/_}
-echo $a:1:12  --> Everything right here is interpreted as a parameter not as a command
+    echo $a  --> Retrieves the value of variable a. This is different to "echo a" because this "a" is not represented as a variable just a character.
+        Hello World World
+    echo ${a}  --> This is exactly the same as previous command
+        Hello World World
+    echo ${a:4}
+        o World World
+    echo ${a:1:12}
+        ello World W
+    echo ${a:6:3}
+        Wor
+    echo ${a/World/Everybody}  --> This is called Pattern Susbstitution
+        Hello Everybody World
+    echo ${a//World/Everybody}  --> This is called Pattern Susbstitution
+        Hello Everybody Everybody
+    echo ${a//o/_}  --> This is called Pattern Susbstitution
+        Hell_ W_rld W_rld
+    echo $a:1:12  --> Everything after the variable is gonna be interpreted as characters not as a Parameter Expansion. That's why the most of the times es important to add the {} to use the tools provided by Paremeter Substitution
+        Hello World World:1:12
 
 ----
 uname -r
