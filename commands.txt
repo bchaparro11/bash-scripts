@@ -163,20 +163,61 @@ a="Hello World World"
         Hello World World:1:12
 
 ----
+
+Command Expansion  --> To encapsulate commands inside another command
+
+It is usally used with string manipulation tools like "echo" to extract a part of a command's output such as a:
+
+    Path
+    File size
+    IP address
+    So on
+
+It is usually used with tools like
+
+    grep
+    awk
+    cut
+
+I can represent it as:
+    $(...)  --> This is the most used
+    `...`  --> This isn't the most used because is apparentely a bit confusing
+
 uname -r
+
 echo "The kernel is $(uname -r)."
+echo "The kernel is `uname -r`."
+
 echo "The python version is $(python3 -V)"
+echo "The python version is `python3 -V`"
+
 echo "Result: $(python3 -c 'print("Hello from Python!")')"
-echo "Result: $(python3 -c 'print("Hello from Python!")' | tr [a-z] [A-Z])"
 echo "Result: `python3 -c 'print("Hello from Python!")'`"
-Command substitution is often used with grep awk, and cut
+
+echo "Result: $(python3 -c 'print("Hello from Python!")' | tr [a-z] [A-Z])"
+echo "Result: `python3 -c 'print("Hello from Python!")' | tr [a-z] [A-Z]`"
 
 ----
+
+Arithmetic Expansion  --> It's similar to Parameter Expansions but this time it's used for Arithmetic Expressions
+
+Older representation $[]
+
 echo $((2+2))
 echo $((3-2))
 echo $((3*4))
 echo $((4/5))
 Bash can only calculate operations using integers
+
+----
+
+Combination of Parameter Expansion and Arithmetic Expansion
+
+echo "Result: $(python3 -c 'print("Hello from Python!")') $((2+2))"
+    Result: Hello from Python! 4
+
+echo "Result: $(python3 -c 'print("Hello from Python!")') $((2+2))"  --> It returns exactly as previous command but it's using back ticks instead of dollar sign + parenthesis.
+    Result: Hello from Python! 4
 
 ----
 embeddedWord="nice"
