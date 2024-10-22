@@ -463,21 +463,43 @@ echo "The results are: $(( 2 + 2 )) and $(( 3 / 1 ))"
 printf "The results are: %d and %d\n" $(( 2 + 2 )) $(( 3 / 1 ))
 
 ----
+
 Arrays
 
-declare -a snacks=("apple" "banana" "orange")
-echo ${snacks[2]}
-snacks[5]="grapes"
-snacks+=("mango")
-echo ${snacks[@]}
-for i in {0..6}; do echo "$i: ${snacks[$i]}"; done
-declare -A office
-office[city]="San Francisco"
-office["building name"]="HQ West"
-echo ${office["building name"]} is in ${office[city]}"
-echo ${!office[@]} --> To acquire all keys
-echo ${office[@]} --> To acquire all values
+In bash there are
 
-----
-The execution of the commands returns a 0 or 1 as saw in the "comparison section". So, those can be used as conditions in if-statements. 
+    Indexed Arrays
+    Associative Arrays
 
+Indexed Arrays
+
+    snacks=("apple" "banana" "orange")  --> To declare an array implicitly
+
+    declare -a snacks=("apple" "banana" "orange")  --> To declare an array explicitly
+
+    echo ${snacks[2]}  --> To access elements of an array
+    snacks[5]="grapes"  --> To add an element in the fifth position
+
+    snacks+=("mango")  --> To add an element at the end of the array
+    snacks+="mango"  --> To append an element at the beginning of the array
+
+    echo ${snacks[@]}  --> To retrieve the whole set of values inside the array. This is not shown by the spaces of the array that are empty
+
+    for i in {0..6}; do echo "$i: ${snacks[$i]}"; done  --> I could do the same as previous command but showing the empty spaces
+
+Associative Arrays (as JSONs)  --> It exists in the versions of bash four or below
+
+    declare -A office  --> To declare the structure as key-value pair
+
+    office[city]="San Francisco"
+    office["building name"]="HQ West"
+
+    echo ${office[city]}  --> To acces the value of the a specific key
+    echo ${office["building name"]}  --> To do exactly the same as the previous command. This key needs double quotes because the name has an space
+
+    echo ${office["building name"]} is in ${office[city]}"
+
+    echo ${!office[@]} --> To acquire all keys
+    echo ${office[@]} --> To acquire all values
+
+Bash doesn't support nested arrays,so, if I need to use nested arrays I have to move to another program language suited for it
