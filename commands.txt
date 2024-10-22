@@ -95,7 +95,10 @@ Tilde Expansion  --> To save the user's HOME directory
 
 echo ~  --> Too see what's user's home. It is not the "global" home
 echo $HOME  --> To do exactlly the same as previous command
+
 whoami  --> To see what's the user I'm using
+echo $USER  --> To do the same as previous command
+
 echo ~- --> To see the previous directory I was in
 echo $OLDPWD --> To do exactly the same as previous command
 
@@ -207,6 +210,12 @@ echo $((2+2))
 echo $((3-2))
 echo $((3*4))
 echo $((4/5))
+
+echo $[2+2]
+echo $[3-2]
+echo $[3*4]
+echo $[4/5]
+
 Bash can only calculate operations using integers
 
 ----
@@ -218,6 +227,11 @@ echo "Result: $(python3 -c 'print("Hello from Python!")') $((2+2))"
 
 echo "Result: $(python3 -c 'print("Hello from Python!")') $((2+2))"  --> It returns exactly as previous command but it's using back ticks instead of dollar sign + parenthesis.
     Result: Hello from Python! 4
+
+
+
+
+
 
 ----
 
@@ -251,47 +265,134 @@ Ways to execute multi-liners bash programs:
     shopt
 
 ----
+
+echo command
+
+echo hello
+echo hello world
+
 embeddedWord="nice"
 echo Hi $embeddedWord world!
+echo Hi ${embeddedWord} world!
+
 echo "Hi $embeddedWord world!"
-echo Hi \(big\) world. The kernel is $(uname -r)
-echo 'Hi \(big\) world. The kernel is $(uname -r)' --> These are the strong quotes
-echo "Hi \(big\) world. The kernel is $(uname -r)" --> More flexible
-echo;echo "Ni hao!";echo
+echo "Hi ${embeddedWord} world!"
+
+echo Hi $embeddedWord $(uname -r)
+echo "Hi $embeddedWord $(uname -r)"
+
+echo The (kernel) is $(uname -r)  --> The first parenthesis gives an error
+echo "The (kernel) is $(uname -r)"  --> This is the solution to the previous command error
+echo Hi \(big\) world. The kernel is $(uname -r)  --> Another solution
+
+echo 'Hi \(big\) world. The kernel is $(uname -r)' --> These single quotes don't allow to execute Tilde, Brace, Parameter, Command or Arithmetic Expansions. Everything is treated as characters only. These are the strong quotes, those are outputted as written.
+
+echo "Hi \(big\) world. The kernel is $(uname -r)" --> These double quotes will allow us to execute Tilde, Brace, Parameter, Command or Arithmetic Expansions. These quote are more flexible
+
+echo;echo "Ni hao!";echo  --> A way to convine echo commands
+
 echo -n "Ni hao" --> Turns out the new line
 
+echo -n "There are two echo commands"; echo -n "outputting a text in just one line"
+echo -n "There are two echo commands"; echo "outputting a text in just one line + a jumpspace"
+
 ----
+
+Variables
+
+- Variables:
+    - are case sensitive
+    - musn't have spaces after or before the equal command
+    - are special case of parameter expansion
+
 _var=hi
-_var="hi hi"
+_var="hi hi"  --> I need to use double quotes to use spaces in the value of a variable
 _var=7
+
 echo $_var
+echo ${_var}  --> This gives us exactly the same output as previous commands
+
 declare -r _immutable_var=14
-declare -l _lowercase_var="HELLO HELLO"
-_lowercase_var="NI HAO NI HAO"
-declare -u _uppercase_var="hi hi"
-_uppercase_var="guten morgen"
-declare -p
+
+declare -l _lowercase_var="HELLO HELLO"  --> To define a bucket where whatever value I assigned to would be always cast to lowercase 
+_lowercase_var="NI HAO NI HAO"  --> As I have already defined the bucket with the feature of casting everything to lowercase, this new value will be outputted all in lowercase
+
+declare -u _uppercase_var="hi hi"  --> To do the same as both previous commands but uppercase
+_uppercase_var="guten morgen"  --> To do the same as lowercase previous commands put uppercase
+
+declare -p  --> To see the whole list of variables that have been set in the current session
+
 echo $USER
 
 ----
-echo $(( (3+6)*12 - (2**7)  ))
+
+Working with numbers:
+    
+    - $(())  --> Arithmetic Expansion
+    - (())  --> Arithmetic Evaluation
+
+Operation I can perform in Bash Shell:
+
+    - Addition
+    - Subtraction
+    - Mutiplication
+    - Division
+    - Modulo
+    - Exponentiation
+
+echo $(( (3+6)*12 - (2**7)  ))  --> I can use embedded parenthesis inside an Arithmetic Expansion
+
 a=3
-((a+=3))
-((a++))
-((a--))
-b=$a+1 --> Bash treats this as a string
-declare -i b=3 --> To declare a variable to be used as an integer
-b=$b+1 --> This isn't gonna give as an error
-echo $((a++)) --> I coudl use it here
-declare -i c
+((a+=3))  --> To implement the change of value without using the $(())
+((a++))  --> To do the same as previous command
+((a--))  --> To do the same as previous command
+
+echo $((a+=3))  --> To do exactly the same as the previous Arithmetic Evaluation but using Arithmetic Expansion. In this case the echo returns a value that represents the value of the variable "a" before applying the mathematical operation.
+echo $((a++))  --> To do the same as previous command
+echo $((a--))  --> To do the same as previous command
+
+((a+=2))
+((a-=2))
+((a*=2))
+((a/=2))
+((a%=2))
+
+echo $((a+=2))
+echo $((a-=2))
+echo $((a*=2))
+echo $((a/=2))
+echo $((a%=2))
+
+((a**=2))  --> This is not possible
+((a=a**2))  --> This is the solution to the previous commanddeclare -i c
+
+We musn't use $ before variables inside the Arithmetic Expansion or Evaluation. It's gonna return an error
+
+b=$a+1 --> Bash treats this as a string. The result of this would be (in the case a is equal to 2):
+    2+1
+
+declare -i b=3 --> To solve a the previous problem declaring a bucket that has the features of an integer.
+b=$b+1 --> This is not gonna return a string as the previous command, instead the result would be (in the case a is equal to 2):
+    3
+
+If I need to work with floating numbers I have to use:
+
+    bc (Basic Calculator)
+    awk
+
 declare -i e=1
 declare -i f=3
-n=$(echo "scale=3; $e/$f" | bc)
-echo $n
-echo $RANDOM
-echo $(( 1 + RANDOM % 10 ))
-echo $(( 1 + RANDOM % 20 ))
-echo $(( 1 + RANDOM % 100 ))
+n=$(echo "scale=3; $e/$f" | bc)  --> To give floating results
+echo $n  --> This is going to return .333, but this isn't a number, this is a string that's equal to ".333"
+
+echo $RANDOM  --> To give a number randomly between 0 - 32767
+
+echo $(( 1 + RANDOM ))  --> To get a number randomly between 1 - 32767
+echo $(( 1 + RANDOM % 10 ))  --> To get a number randomly between 1 - 10
+echo $(( 1 + RANDOM % 20 ))  --> To get a number randomly between 1 - 20
+echo $(( 1 + RANDOM % 100 ))  --> To get a number randomly between 1 - 100
+
+Bash scripting isn't suited to make a lot of calculations. If we need it, we should replace to another programming language
 
 ----
 help test
