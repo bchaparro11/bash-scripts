@@ -220,6 +220,37 @@ echo "Result: $(python3 -c 'print("Hello from Python!")') $((2+2))"  --> It retu
     Result: Hello from Python! 4
 
 ----
+
+Bash Scripts Foundations  --> What to know before writing bash shell scripts
+
+One-liners bash programs are useful when using it with aliases to use one alias to execute the whole set of commands separated by semicolon.
+
+Ways to execute multi-liners bash programs:
+
+    - bash file.sh
+
+    - Including the shebang line as the first line (#!/usr/bin/env bash). This case is bash but it can be Python or Ruby or whatever interpreted scripting language (But I have to give privileges to the file using "chmod +x file.sh") (The code should be executed using the command "./file.sh").
+        - The previous shebang finds the shell used by the environment, but there could be another shebang more directly, something like (The code should be executed using the command "./file.sh"):
+            - #!/usr/bin/bash
+        - I can also use in python code, the following (The code should be executed using the command "./file.sh"):
+            - #!/usr/bin/python3
+        - I can also execute .sh files prompting in the bash shell something like:
+            - /usr/bin/bash file.sh
+        - Or:
+            - /usr/bin/env bash file.sh
+        - I can also execute .py files prompting in the bash shell something like:
+            - /usr/bin/python3 file.py
+
+    - Running locally with ./file.sh or file if in the $PATH
+
+    - I can also name the files without using the .sh
+
+- I have to use the following tools if I need to set or unset certaing configurations made to the bash shell (change options for the shubshell):
+    
+    set
+    shopt
+
+----
 embeddedWord="nice"
 echo Hi $embeddedWord world!
 echo "Hi $embeddedWord world!"
