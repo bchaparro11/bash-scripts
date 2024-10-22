@@ -395,25 +395,62 @@ echo $(( 1 + RANDOM % 100 ))  --> To get a number randomly between 1 - 100
 Bash scripting isn't suited to make a lot of calculations. If we need it, we should replace to another programming language
 
 ----
-help test
-[ -d ~ ] --> It's important to add spaces to the insides of the brackets
-echo $?
-[ -d /bin/bash ]; echo $?
-[ -d /bin ]; echo $?
-[ "cat" = "dog" ]; echo $? --> The following symbols are used only by strings  >, >=, <, <= 
-[ 1 = 1 ]; echo $?
-[ 1 -lt 5 ]; echo $?
-[ ! 1 -lt 5 ]; echo $?
+
+Comparing values using test
+
+Right here:
+
+    - 0 = true
+    - 1 = false
+
+help test | less  --> To know which flags I could add inside []
+
+[ -d ~ ]; echo $?  --> I need to use this to know which the exit status from the previous comand was. In this case the result is 0 because ~ is a directory
+
+It's important to add spaces to the insides of the brackets
+
+[ -d /bin/bash ]; echo $?  --> The result of this last command is 1 because /bin/bash is a file
+
+[ -d /bin ]; echo $?  --> The result is 0 because /bin is a directory
+
+[ "cat" = "dog" ]; echo $? --> The result of this is 1 because "cat" is different to "dog"
+
+[ 1 = 1 ]; echo $?  --> The result of this is 0 because both elements are equal
+
+The following symbols are used only by strings  >, >=, <, <= . We can compare strings using these symbols because it compares if the characters within a word a earlier or later in the character set.
+
+The symbol equal (=) is the only one that could be use in numbers and characters. I guess it happens because in both ways the elements are treated as characters, even when they're numbers.
+
+The followings are the symbols used to compare numbers:
+
+    [ 1 -lt 5 ]; echo $?  --> The result of these set of commands is 0
+
+    [ ! 1 -lt 5 ]; echo $? --> The result of these set of commands is 1
 
 ----
+
+Comparing values using extended test
+
+We could use more than one comparing expression inside extended test
+
 [[  ]] --> This is called extended tests and give us extended tools not provided by regular test, say, []
-[[ -d ~ && -a /bin/bash ]]; echo $?
-[[ -d ~ || -a /bin/bashh ]]; echo $?
-[[ -d ~ ]] && echo This runs if the statement inside of double brackets is true
-ls && echo This runs if the statement inside of double brackets is true
-true && echo This runs if the statement inside of double brackets is true
-false && echo This runs if the statement inside of double brackets is true
-[[ "cat" =~ c.* ]]; echo $?
+
+[[ -d ~ && -a /bin/bash ]]; echo $?  --> This is an AND. The result is 0
+
+[[ -d ~ || -a /bin/bashh ]]; echo $?  --> This is an OR. The result is 0
+
+I could also use comparison operators after [[]]:
+    [[ -d ~ ]] && echo ~ is a directory  --> This runs if the statement inside of double brackets is true
+    ls && echo something   --> This runs if the statement before double ampersand is true
+    true && echo something  --> This runs if the statement before double ampersand is true
+    false && echo shomething  --> This runs if the statement before double ampersand is true
+
+As seen previously just executing some commands like "ls" returns true
+
+[[ "cat" =~ c.* ]]; echo $?  --> I can use regular regular expressions. In this example we're telling with "c.*" that we are gathering the whole set of words that begin with "c" and have any other amount of characters. The result in this case is 0
+
+Things to check out about bash:
+    "Bash Patterns and Regular Expressions"
 
 ----
 echo -e "\a"
