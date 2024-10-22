@@ -3,9 +3,12 @@ declare -i x=4
 if [[ $x -gt 5 ]] # Apparently I can't use comparison operators in extended tests. But I could use it here
 then
     echo "$x is greater than 5"
-elif [[ $x -gt 2 ]]
+elif [[ $x -gt 4 ]]
 then
-    echo "$x is greater than 2"
+    echo "$x is greater than 4"
+elif [[ $x -gt 3 ]]
+then
+    echo "$x is greater than 3"
 else
     echo "$x is not greater than 5"
 fi

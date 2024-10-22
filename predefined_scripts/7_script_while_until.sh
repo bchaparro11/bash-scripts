@@ -14,7 +14,7 @@ x=4
 
 printf "UNTILING\n"
 
-until [[ $x > $x ]]
+until [[ $x > 10 ]]
 do
     echo "number:$x"
     (( x++ ))
